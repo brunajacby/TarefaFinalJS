@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ritmo – Gestor de Tarefas</title>
+
+    <link rel="icon" href="images/favicon.ico?v=2" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/elementos.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/apis.js" defer></script>
+    <script src="js/tarefas.js" defer></script>
+    <script src="js/calendario.js" defer></script>
+    <script src="js/eventos.js" defer></script>
+</head>
+
+<body class="day">
+
+    <!-- Login -->
+    <section id="login-section" class="login">
+        <div class="login-card">
+            <h1>Ritmo</h1>
+
+            <form id="login-form">
+                <input type="email" name="email" placeholder="O teu email">
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+
+            <p id="login-message" class="message"></p>
+        </div>
+    </section>
+
+    <!-- Aplicação -->
+    <section id="app-section" class="layout hidden">
+
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Menu lateral-->
+        <aside id="sidebar" class="sidebar">
+            <p class="brand">Ritmo</p>
+
+            <nav class="menu">
+                <button id="nav-dashboard" class="menu-item active">Dashboard</button>
+                <button id="nav-tasks" class="menu-item">Tarefas</button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button id="theme-btn" class="menu-item">Tema escuro</button>
+                <button id="logout-btn" class="menu-item logout">Sair</button>
+            </div>
+        </aside>
+
+        <!-- Conteúdo-->
+        <main class="content">
+
+            <!-- TOPO -->
+            <header class="topbar">
+                <button id="menu-btn" class="menu-btn" aria-label="Abrir menu">☰</button>
+
+                <div>
+                    <p id="page-title" class="page-title">Dashboard</p>
+                    <h2 id="welcome"></h2>
+                    <p id="date-time" class="muted"></p>
+                </div>
+            </header>
+
+            <!-- Celebração -->
+            <div id="celebration" class="celebration hidden">
+                🎉 Parabéns! Completaste todas as tarefas!
+            </div>
+
+            <!-- Dashboard-->
+            <section id="dashboard-view" class="view">
+
+                <!-- ESTATÍSTICAS -->
+                <div class="stats">
+
+                    <div class="stat">
+                        <p class="stat-number" id="done-count">0</p>
+                        <p class="stat-label"><span class="dot dot-done"></span>Concluídas</p>
+
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar"></div>
+                        </div>
+                        <p id="progress-text" class="progress-text">0% concluído</p>
+                    </div>
+
+                    <div class="stat">
+                        <p class="stat-number" id="active-count">0</p>
+                        <p class="stat-label"><span class="dot dot-todo"></span>Ativas</p>
+                    </div>
+
+                    <div class="stat">
+                        <p class="stat-number" id="doing-count">0</p>
+                        <p class="stat-label"><span class="dot dot-doing"></span>Em andamento</p>
+                    </div>
+
+                    <div class="stat">
+                        <p class="stat-number" id="total-count">0</p>
+                        <p class="stat-label">Total</p>
+                    </div>
+
+                </div>
+
+                <!-- HOJE -->
+                <div class="card">
+                    <h3>Hoje</h3>
+                    <p id="today-message" class="muted"></p>
+                    <ul id="today-list" class="simple-list"></ul>
+                </div>
+
+                <!-- Tempo e feriados -->
+                <div class="grid-2">
+
+                    <!-- API DO TEMPO -->
+                    <div class="card">
+                        <h3>Tempo</h3>
+
+                        <form id="city-form">
+                            <input type="text" name="city" placeholder="Procura uma cidade...">
+                            <button type="submit" class="btn-secondary">Ver</button>
+                        </form>
+
+                        <p id="weather" class="weather-now">A carregar o tempo...</p>
+                    </div>
+
+                    <!-- API DOS FERIADOS -->
+                    <div class="card">
+                        <h3>Próximos feriados em Portugal</h3>
+                        <p id="holidays-message" class="muted">A carregar feriados...</p>
+                        <ul id="holidays-list" class="simple-list"></ul>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Tarefas -->
+            <section id="tasks-view" class="view hidden">
+
+                <div class="tasks-layout">
+
+                    <!-- CALENDÁRIO -->
+                    <div class="card calendar-card">
+
+                        <div class="calendar-header">
+                            <button type="button" id="prev-month" class="btn-secondary">❮</button>
+                            <h3 id="calendar-month"></h3>
+                            <button type="button" id="next-month" class="btn-secondary">❯</button>
+                        </div>
+
+                        <div class="calendar-weekdays">
+                            <span>Seg</span>
+                            <span>Ter</span>
+                            <span>Qua</span>
+                            <span>Qui</span>
+                            <span>Sex</span>
+                            <span>Sáb</span>
+                            <span>Dom</span>
+                        </div>
+
+                        <div id="calendar-days" class="calendar-days"></div>
+
+                        <div class="calendar-legend">
+                            <span><span class="dot dot-done"></span>Hoje</span>
+                            <span><span class="dot dot-todo"></span>Com tarefas</span>
+                            <span><span class="dot dot-holiday"></span>Feriado</span>
+                        </div>
+
+                        <p id="selected-date" class="muted calendar-message">
+                            Seleciona um dia para ver as tarefas.
+                        </p>
+
+                    </div>
+
+                    <!-- Formulário e Lista -->
+                    <div class="tasks-main">
+
+                        <div class="card">
+                            <form id="task-form">
+                                <input type="text" name="task" placeholder="O que tens para fazer?">
+                                <input type="date" name="taskDate" id="task-date">
+                                <button type="submit" class="btn-primary">Adicionar</button>
+                            </form>
+
+                            <p id="task-message" class="message"></p>
+                        </div>
+
+                        <div class="card">
+                            <div class="list-header">
+                                <h3 id="list-title">Todas as tarefas</h3>
+
+                                <div class="filters">
+                                    <button id="all-btn" class="filter-btn active" data-filter="all" data-title="Todas as tarefas">Todas</button>
+                                    <button id="active-btn" class="filter-btn" data-filter="active" data-title="Tarefas ativas">Ativas</button>
+                                    <button id="doing-btn" class="filter-btn" data-filter="doing" data-title="Tarefas em andamento">Em andamento</button>
+                                    <button id="done-btn" class="filter-btn" data-filter="done" data-title="Tarefas concluídas">Concluídas</button>
+                                </div>
+                            </div>
+
+                            <form id="search-form">
+                                <input type="text" name="search" placeholder="Pesquisar tarefas...">
+                                <button type="submit" class="btn-secondary">Pesquisar</button>
+                            </form>
+
+                            <ul id="task-list"></ul>
+
+                            <button type="button" id="clear-date-filter" class="btn-secondary">
+                                Ver todas as tarefas
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Rodapé -->
+            <footer class="footer">
+                <p>Ritmo – Gestor de Tarefas · © 2026 · Projeto desenvolvido para a disciplina de Desenvolvimento Web</p>
+            </footer>
+
+        </main>
+    </section>
+
+</body>
+</html>

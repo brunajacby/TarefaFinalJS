@@ -1,0 +1,644 @@
+/*Cores*/
+
+.day {
+    --bg: #F4EFE6;
+    --surface: #FBF8F2;
+    --text: #2E2A25;
+    --muted: #6B6358;
+    --border: #E2D8C8;
+    --hover: #ECE4D6;
+    --accent: #9A5B3C;
+    --accent-strong: #7A4529;
+    --accent-soft: #F1E3D8;
+    --doing: #6F8466;
+    --todo: #C08A3E;
+    --danger: #A8432E;
+    --on-accent: #FFFFFF;
+    --on-danger: #FFFFFF;
+    --danger-strong: #8C3322;
+    --danger-soft: #F3DED6;
+    --dot-done: #3B82D6;
+    --dot-todo: #F2A93B;
+    --dot-doing: #4FA35A;
+    --dot-holiday: #E0453A;
+}
+
+.night {
+    --bg: #36312C;
+    --surface: #403A34;
+    --text: #F2ECE4;
+    --muted: #C4BAAC;
+    --border: #574F46;
+    --hover: #4A433C;
+    --accent: #D9A27B;
+    --accent-strong: #EBC09C;
+    --accent-soft: #5A4839;
+    --doing: #9DB08F;
+    --todo: #D9AE6A;
+    --danger: #E3836E;
+    --on-accent: #2A1A10;
+    --on-danger: #2E0E08;
+    --danger-strong: #F2B3A3;
+    --danger-soft: #5A3C34;
+    --dot-done: #6BB0F5;
+    --dot-todo: #FFC15E;
+    --dot-doing: #7FD38A;
+    --dot-holiday: #FF7A6E;
+}
+
+
+/*Geral*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Caixas: cartões, estatísticas e login têm o mesmo aspeto */
+.card,
+.stat,
+.login-card {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--surface);
+}
+
+
+/*Botões e campos*/
+
+button {
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--hover);
+}
+
+.btn-primary {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--on-accent);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-strong);
+}
+
+form {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"],
+input[type="date"] {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+input:focus {
+    outline: 2px solid var(--accent);
+}
+
+/* Campo com erro */
+.input-error,
+.input-error:focus {
+    border-color: var(--danger);
+    outline-color: var(--danger);
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+}
+
+.message {
+    min-height: 20px;
+    margin-top: 8px;
+    color: var(--danger);
+    font-size: 0.9rem;
+}
+
+.success {
+    color: var(--accent);
+}
+
+
+/*Login*/
+
+.login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    padding: 36px 28px;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+.login-card form {
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+
+/*Menu lateral*/
+
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px 14px;
+    border-right: 1px solid var(--border);
+    background-color: var(--surface);
+}
+
+.brand {
+    margin: 0 0 24px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.menu,
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.menu-item {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+}
+
+.menu-item.active {
+    background-color: var(--accent-soft);
+    color: var(--accent-strong);
+    font-weight: 500;
+}
+
+.logout:hover {
+    color: var(--danger);
+}
+
+/*Menu hambúrguer (só aparece em ecrãs pequenos)*/
+.menu-btn {
+    display: none;
+    padding: 6px 12px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+
+/*Conteúdo*/
+
+.content,
+.view,
+.tasks-main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.content {
+    min-height: 100vh;
+    max-width: 1100px;
+    padding: 28px 32px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.page-title {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.topbar h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.celebration {
+    padding: 14px;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    background-color: var(--accent-soft);
+    color: var(--accent-strong);
+    text-align: center;
+}
+
+.footer {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+
+/*Dashboard*/
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/*Pontinhos de cor*/
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    border-radius: 50%;
+}
+
+.dot-done { background-color: var(--dot-done); }
+.dot-doing { background-color: var(--dot-doing); }
+.dot-todo { background-color: var(--dot-todo); }
+.dot-holiday { background-color: var(--dot-holiday); }
+
+/*Barra de progresso*/
+.progress {
+    height: 6px;
+    margin-top: 12px;
+    border-radius: 3px;
+    background-color: var(--hover);
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--accent);
+    transition: width 0.4s;
+}
+
+.progress-text {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/*Tempo e feriados*/
+.weather-now {
+    margin: 14px 0 8px;
+    font-weight: 500;
+}
+
+.simple-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.simple-list li {
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+/*Cartão no Dashboard*/
+#today-message {
+    margin-bottom: 8px;
+}
+
+.simple-list li.done {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+.simple-list li.late {
+    color: var(--danger);
+}
+
+/*Tarefas*/
+
+.tasks-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+/*Calendário*/
+.calendar-header,
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.calendar-header h3,
+.list-header h3 {
+    margin: 0;
+}
+
+.calendar-header button {
+    padding: 4px 10px;
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+
+.calendar-weekdays {
+    margin: 14px 0 6px;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.calendar-days button {
+    height: 34px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 0.85rem;
+}
+
+.calendar-days button.today {
+    border: 1px solid var(--dot-done);
+    font-weight: 600;
+}
+
+.calendar-days button.has-tasks {
+    box-shadow: inset 0 -3px 0 var(--todo);
+}
+
+.calendar-days button.holiday {
+    background-color: var(--danger-soft);
+    color: var(--danger-strong);
+    font-weight: 600;
+}
+
+.calendar-days button.selected {
+    background-color: var(--accent);
+    color: var(--on-accent);
+}
+
+.calendar-legend {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.calendar-message {
+    margin: 12px 0;
+    font-size: 0.85rem;
+}
+
+/*Filtros*/
+.list-header {
+    margin-bottom: 12px;
+}
+
+.filters {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.filter-btn.active {
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+    color: var(--accent-strong);
+}
+
+/*Pesquisa*/
+#search-form {
+    margin-bottom: 12px;
+}
+
+/* Lista de tarefas */
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+#task-list li span {
+    flex: 1;
+}
+
+#task-list li small {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+#task-list li button {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+/*Botão Concluir (verde) e Remover (vermelho)*/
+#task-list li .btn-done {
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--on-accent);
+}
+
+#task-list li .btn-remove {
+    border-color: var(--danger);
+    background-color: var(--danger);
+    color: var(--on-danger);
+}
+
+#task-list li .btn-done:hover,
+#task-list li .btn-remove:hover {
+    opacity: 0.85;
+}
+
+#task-list li.doing span::before {
+    content: "● ";
+    color: var(--doing);
+}
+
+/*Tarefa atrasada*/
+#task-list li.late {
+    border-left: 3px solid var(--danger);
+    padding-left: 10px;
+}
+
+#task-list li.late small {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+#task-list li.done span {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+#task-list li.empty {
+    justify-content: center;
+    color: var(--muted);
+}
+
+#clear-date-filter {
+    margin-top: 12px;
+}
+
+/* Ecrãs pequenos  */
+/* Tablet (até 900px): menu hambúrguer e colunas empilhadas */
+@media (max-width: 900px) {
+    .layout,
+    .grid-2,
+    .tasks-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 240px;
+        z-index: 20;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .overlay.show,
+    .menu-btn {
+        display: block;
+    }
+}
+
+/*Telemóvel (até 600px)*/
+@media (max-width: 600px) {
+    .content {
+        padding: 20px 16px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    #task-list li {
+        flex-wrap: wrap;
+    }
+
+    #task-list li span {
+        flex-basis: 70%;
+    }
+}
