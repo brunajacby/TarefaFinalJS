@@ -39,9 +39,9 @@ Todas as APIs são públicas e **não requerem chave**.
 ```
 TarefaFinalJS/
 ├── index.html          # Página única (login + aplicação)
-├── CSS/
+├── css/
 │   └── style.css       # Estilos e temas
-├── JS/
+├── js/
 │   ├── elementos.js    # Referências aos elementos do DOM
 │   ├── script.js       # Login/logout, navegação, tema, data/hora
 │   ├── apis.js         # Tempo (Open-Meteo) e feriados (Nager.Date)
@@ -69,7 +69,6 @@ Não é necessária instalação nem build.
 ## Notas
 
 - Os dados ficam guardados apenas no `localStorage` do browser; limpar os dados do site apaga as tarefas.
-- O `index.html` referencia as pastas como `css/` e `js/` (minúsculas), mas no repositório existem como `CSS/` e `JS/`. No Windows funciona, mas em sistemas sensíveis a maiúsculas (Linux, GitHub Pages) deve-se uniformizar os nomes.
 
 ## Autora
 
