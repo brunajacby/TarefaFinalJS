@@ -12,7 +12,7 @@ function login(e) {
         return;
     }
 
-    // Se a primeira vez com email, pedir o nome para guardar no localStorage.
+    // Primeira vez que o usar o email será pedido o nome e ficará guardado no localStorage
     if (!localStorage.getItem("name-" + email)) {
         let name = prompt("Bem-vindo! Qual é o teu nome?");
 
@@ -72,12 +72,13 @@ function getGreeting() {
 
     if (hour < 12) {
         return "Bom dia";
-    } else if (hour < 20) {
+    } else if (hour < 19) {
         return "Boa tarde";
     } else {
         return "Boa noite";
     }
 }
+
 
 //Menu e navegação
 function toggleMenu() {
